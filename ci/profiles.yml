@@ -1,0 +1,8 @@
+# Profile used ONLY by GitHub Actions (DBT_PROFILES_DIR=ci). Local development uses profiles.yml.example.
+my_first_project:
+  target: ci
+  outputs:
+    ci:
+      type: duckdb
+      path: ci.duckdb
+      threads: 1

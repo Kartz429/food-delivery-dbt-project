@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: silver_customers
+    description: "Cleaned customers (upper-cased names)."
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+  - name: silver_restaurants
+    description: "Cleaned restaurants (upper-cased names)."
+    columns:
+      - name: restaurant_id
+        data_tests: [unique, not_null]
+  - name: silver_orders
+    description: "Cleaned orders (lower-cased status)."
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('silver_customers')
+              field: customer_id
+      - name: restaurant_id
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('silver_restaurants')
+              field: restaurant_id

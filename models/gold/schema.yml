@@ -1,10 +1,46 @@
 version: 2
 
 models:
-  - name: fact_orders
+  - name: dim_customers_scd2
+    description: "Customer dimension with SCD Type 2 history built from customers_snapshot. One row per customer version."
+    columns:
+      - name: customer_sk
+        description: "Surrogate key (hash of customer_id and dbt_valid_from)."
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests: [not_null]
 
+  - name: dim_restaurants
+    description: "Restaurant dimension."
+    columns:
+      - name: restaurant_id
+        data_tests: [unique, not_null]
+
+  - name: fact_orders
+    description: "Orders fact. Grain: one row per order. Uses the current customer version."
     columns:
       - name: order_id
-        tests:
-          - unique
+        data_tests: [unique, not_null]
+      - name: customer_sk
+        data_tests:
           - not_null
+          - relationships:
+              to: ref('dim_customers_scd2')
+              field: customer_sk
+      - name: restaurant_id
+        data_tests:
+          - relationships:
+              to: ref('dim_restaurants')
+              field: restaurant_id
+      - name: status
+        data_tests:
+          - accepted_values:
+              values: ['delivered', 'cancelled']
+
+  - name: mart_gmv
+    description: "Dashboard mart: delivered orders and GMV by customer city."
+    columns:
+      - name: city
+        data_tests: [unique, not_null]
+      - name: gmv
+        data_tests: [not_null]

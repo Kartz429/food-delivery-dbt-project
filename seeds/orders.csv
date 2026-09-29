@@ -1,0 +1,6 @@
+order_id,customer_id,restaurant_id,amount,status
+1001,1,101,250,delivered
+1002,2,102,500,delivered
+1003,3,103,300,cancelled
+1004,1,101,700,delivered
+1005,4,101,200,delivered

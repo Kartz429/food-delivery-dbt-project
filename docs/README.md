@@ -16,4 +16,4 @@
 | [project_highlights.md](project_highlights.md) | Key features |
 | [resume_bullets.md](resume_bullets.md) | Resume-ready bullets |
 | [changelog.md](changelog.md) | Change history |
-| [proposed_fixes/](proposed_fixes/) | Suggested, unapplied fixes |
+| [assets/](assets/) | Charts used in the README |

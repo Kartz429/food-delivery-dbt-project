@@ -6,3 +6,6 @@
 - Star schema and GMV mart
 - Automation scripts to sync documentation repos
 - Documented limitations and a concrete improvement plan
+- 26 dbt tests including reconciliation checks
+- GitHub Actions CI running `dbt build`
+- Deterministic hash surrogate keys for the SCD2 dimension

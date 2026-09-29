@@ -1,0 +1,11 @@
+# EXAMPLE ONLY - the real profiles.yml was not in the uploaded zip.
+# Copy to ~/.dbt/profiles.yml and adjust. Assumes dbt-duckdb (dev.duckdb / prod.duckdb files exist in the project).
+my_first_project:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: dev.duckdb
+    prod:
+      type: duckdb
+      path: prod.duckdb
